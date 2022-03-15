@@ -20,6 +20,8 @@ const createUser = async(req, res) => {
 
     if(password != confirmpassword) return res.status(422).json({ msg: 'As senhas são difierentes!' })
 
+    if(age < 18) return res.status(422).json({ msg: 'O sistema é para maiores de idade!' })
+
     const emailUse = await User.findOne({ email: email })
     const userNameUse = await User.findOne({ username: username })
     

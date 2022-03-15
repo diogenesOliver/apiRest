@@ -7,7 +7,7 @@ const linkController = require('./routeController/linkController')
 
 const app = express()
 
-app.use('/', express.json(), express.urlencoded())
+app.use('/', express.json(), express.urlencoded({ extended: true }))
 
 app.post('/createUser', linkController.createUser)
 
