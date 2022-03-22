@@ -10,6 +10,7 @@ const app = express()
 app.use('/', express.json(), express.urlencoded({ extended: true }))
 
 app.post('/createUser', linkController.createUser)
+app.post('/loginUser', linkController.loginUser)
 
 mongoose.connect(process.env.DB_URL).then(() => {
     app.listen(process.env.PORT, () => {

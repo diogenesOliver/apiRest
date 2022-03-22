@@ -6,7 +6,8 @@ const User = mongoose.model('User', {
     password: {type: String, required: true},
     confirmpassword: {type: String, required: true},
     email: {type: String, required: true},
-    age: {type: Number, required: true}
+    age: {type: Number, required: true},
+    createdAt: {type: Date, default: Date.now}
 
 })
 
