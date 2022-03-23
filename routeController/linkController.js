@@ -34,11 +34,6 @@ const createUser = async(req, res) => {
 
     const user = new User({ username, password: passwordCript, confirmpassword: passwordCript, email, age })
 
-    const token = await jwt.sign({ email: user.email, user: user.username }, process.env.SECRET)
-    const verifyToken = jwt.verify(token, process.env.SECRET)
-
-    console.log(verifyToken)
-
     try{
        user.save()
        res.status(200).json({ msg: 'Usuário criado com sucesso! Seja Bem-Vindo ao portal do usuário' })
@@ -61,12 +56,26 @@ const loginUser = async (req, res) => {
 
     const verificaPassword = await bcrypt.compare(password, user.password)
     
-    if(verificaPassword == false){
-        res.status(422).json({ msg: 'Senha ou Email incorretos!' })
-    }else{
-        res.status(200).json({ msg: 'Seja Bem-Vindo(a) ao portal do usuário!' })
-    }
+    if(verificaPassword == false) return res.status(422).json({ msg: 'Senha ou Email incorretos!' })
+
+    const token = await jwt.sign({ email: user.email, user: user.username, admin: user.admin }, process.env.SECRET)
+
+    res.header('authorization-token', token)
     
+    res.status(200).json({ msg: 'Seja Bem-Vindo(a) ao portal do usuário!' })
 }
 
-module.exports = { createUser, loginUser }
+const routeAdmin = async(req, res) => {
+
+    if(req.user.admin){
+
+        return res.status(200).json({ msg: 'Seja bem-vindo(a) a portal do admnistrador(a)!' })
+
+    }else{
+
+        return res.status(401).json({ msg: 'Acesso negado! Essa página só pode ser vista pelos admnistradores!' })
+
+    }
+}
+
+module.exports = { createUser, loginUser, routeAdmin }
