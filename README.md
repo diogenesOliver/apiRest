@@ -57,3 +57,5 @@ Seguindo na aplicação temos o código abaixo:<br><br>
 <br>
 
 - Caso contrário retorna uma mensagem de status(401) - `Token inválido!`
+
+[DOCUMENTAÇÃO DO PROJETO EM ANDAMENTO]
