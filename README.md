@@ -1,4 +1,4 @@
-<h2 align='center'> Validação de daos com JWT </h2>
+<h2 align='center'> Validação de dados com JWT </h2>
 
 <br>
 
@@ -23,4 +23,37 @@ Assim que o usuário é logado com status (200) é gerado um `TOKEN`.
 
 **Rota Privada**
 
-[DOCUMENTAÇÃO DO PROJETO EM ANDAMENTO]
+Ainda dentro de  `linkController.js`, temos uma função chamada `routeAdmin`. O objetivo dessa função é determinar quem pode e quem não pode acessar determinada rota privada.<br>
+Dentro do modelo da nossa aplicação `/models/User.js`, temos uma atributo chamado `admin` que recebe por padrão o valor de `[False]`. Dessa maneira podemos verificar, através do Boolean retornado pelo admin, se o usuário está apto para acessar determinada rota ou não.
+
+<br>
+
+**authController - Verificando autenticidade do TOKEN**
+
+O arquivo `authController.js` da pasta `routeController` tem como única funcionalidade verificar o `TOKEN` do usuário.<br>
+A constante `token` pega o token gerado no `header` da requisição, caso não esteja lá esse valor é retornado uma mensagem de status - (401) - `Token não encontrado`.<br>
+Seguindo na aplicação temos o código abaixo:<br><br>
+
+``` 
+
+    try {
+        
+        const userVerified = jwt.verify(token, process.env.SECRET)
+        req.user = userVerified
+        next()
+
+    } catch (error) {
+     
+        return res.status(401).json({ msg: 'Acesso negado! Token inválido' })
+
+    }
+
+```
+
+>[` const userVerified = jwt.verify(token, process.env.SECRET) `]
+
+- Responsável por verificar se o TOKEN gerado e a chave SECRET são compatíveis
+
+<br>
+
+- Caso contrário retorna uma mensagem de status(401) - `Token inválido!`
