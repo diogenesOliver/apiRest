@@ -50,7 +50,7 @@ Seguindo na aplicação temos o código abaixo:<br><br>
 
 ```
 
->[` const userVerified = jwt.verify(token, process.env.SECRET) `]
+>` const userVerified = jwt.verify(token, process.env.SECRET) `
 
 - Responsável por verificar se o TOKEN gerado e a chave SECRET são compatíveis
 
