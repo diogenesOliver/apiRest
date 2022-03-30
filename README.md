@@ -60,7 +60,7 @@ Seguindo na aplicação temos o código abaixo:<br><br>
 
 **Dependências**
 
-<p align='center'>Para o funcionamento completo dessa API Rest temos as seguintes dependeências:</p>
+<p align='center'>Para o funcionamento completo dessa API Rest temos as seguintes dependências:</p>
 
  <br>
 
