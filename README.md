@@ -52,10 +52,21 @@ Seguindo na aplicação temos o código abaixo:<br><br>
 
 >` const userVerified = jwt.verify(token, process.env.SECRET) `
 
-- Responsável por verificar se o TOKEN gerado e a chave SECRET são compatíveis
+- Responsável por verificar se o TOKEN gerado e a chave SECRET, que está armazenada em uma variável de ambiente, são compatíveis.
 
 <br>
 
 - Caso contrário retorna uma mensagem de status(401) - `Token inválido!`
 
-[DOCUMENTAÇÃO DO PROJETO EM ANDAMENTO]
+**Dependências**
+
+<p align='center'>Para o funcionamento completo dessa API Rest temos as aseguintes dependeências:</p>
+
+ <br>
+
+- express
+- mongoose
+- dotenv
+- body-parser
+- bcrypt
+- jsonwebtoken
